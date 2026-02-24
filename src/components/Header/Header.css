@@ -1,0 +1,126 @@
+.header {
+  border: 1px solid rgba(176, 192, 255, 0.24);
+  border-radius: 20px;
+  padding: 20px;
+  background: linear-gradient(122deg, rgba(95, 70, 255, 0.2), rgba(8, 13, 30, 0.96) 44%, rgba(22, 40, 94, 0.78));
+  animation: fadeUp 0.7s ease both;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__brand {
+  margin: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0a0a0f;
+  background: linear-gradient(135deg, #c5ff3d, #ff8a39);
+}
+
+.header__nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.header__nav-links a {
+  display: block;
+  font-size: 14px;
+  color: #e7ecff;
+  padding: 8px 11px;
+  border: 1px solid rgba(188, 201, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(20, 28, 61, 0.5);
+}
+
+.header__hero {
+  margin-top: 24px;
+  max-width: 790px;
+}
+
+.header__kicker {
+  margin: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #9fb2ff;
+}
+
+.header__name {
+  margin: 10px 0 0;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 0.93;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.header__name span {
+  display: block;
+  color: #c5ff3d;
+}
+
+.header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.header__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(189, 202, 255, 0.35);
+  color: #f4f7ff;
+  background: rgba(21, 30, 66, 0.56);
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.header__actions a:first-child {
+  background: linear-gradient(130deg, #c5ff3d, #ff8a39);
+  color: #0b0c13;
+  border-color: transparent;
+}
+
+.header__actions a:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .header__nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
