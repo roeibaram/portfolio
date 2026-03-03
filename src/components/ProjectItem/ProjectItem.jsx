@@ -28,6 +28,11 @@ function ProjectItem({ project, index }) {
       </ul>
 
       <div className="project-card__actions">
+        {project.live && (
+          <a href={project.live} target="_blank" rel="noreferrer">
+            Live Demo
+          </a>
+        )}
         <a href={project.link} target="_blank" rel="noreferrer">
           View Repository
         </a>

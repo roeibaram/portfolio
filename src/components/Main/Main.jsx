@@ -7,6 +7,7 @@ const projects = [
     name: "MileMemo",
     subtitle: "Travel & Flight Tracking",
     link: "https://github.com/roeibaram/MileMemo",
+    live: "https://roeibaram.github.io/MileMemo/",
     description:
       "Search flights by route/date, save personal trips, and persist travel data in localStorage with a clean interactive UI.",
     stack: ["React", "JavaScript", "API Integration", "BEM CSS"],
