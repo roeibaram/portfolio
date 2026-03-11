@@ -21,6 +21,7 @@ const projects = [
     name: "WTWR",
     subtitle: "Weather-Based Clothing App",
     link: "https://github.com/roeibaram/se_project_react",
+    live: "https://roeibaram.github.io/se_project_react/",
     description:
       "Full-stack app that recommends clothing by current weather and lets users manage clothing cards with auth-enabled interactions.",
     stack: ["React", "Node.js", "Express", "MongoDB"],
@@ -34,6 +35,7 @@ const projects = [
     name: "PetMatch",
     subtitle: "Pet Adoption Search",
     link: "https://github.com/roeibaram/petmatch",
+    live: "https://roeibaram.github.io/petmatch/",
     description:
       "Browse and filter adoptable pets through API-powered search with a lightweight, user-friendly frontend experience.",
     stack: ["React", "External API", "Filtering", "State Management"],
@@ -47,6 +49,7 @@ const projects = [
     name: "Spots",
     subtitle: "Photo Sharing UI",
     link: "https://github.com/roeibaram/se_project_spots",
+    live: "https://roeibaram.github.io/se_project_spots/",
     description:
       "Responsive photo-sharing interface with profile editing, content actions, and scalable layout behavior across devices.",
     stack: ["JavaScript", "Responsive Design", "Grid Layout"],
