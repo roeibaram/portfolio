@@ -3,11 +3,21 @@
   border: 1px solid rgba(191, 203, 255, 0.27);
   border-radius: 16px;
   padding: 16px;
-  background: linear-gradient(148deg, rgba(23, 33, 71, 0.8), rgba(8, 12, 28, 0.96));
+  background: linear-gradient(148deg, rgba(23, 33, 71, 0.84), rgba(8, 12, 28, 0.98));
   overflow: hidden;
   transition: transform 0.25s ease, border-color 0.25s ease;
   opacity: 0;
   animation: cardIn 0.7s ease forwards;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #c5ff3d, #ff8a39);
 }
 
 .project-card:nth-child(1) {
@@ -35,6 +45,7 @@
 
 .project-card:hover {
   transform: translateY(-4px);
+  border-color: rgba(210, 220, 255, 0.5);
 }
 
 .project-card__glow {
@@ -156,6 +167,10 @@
   color: #f4f7ff;
   font-weight: 600;
   background: linear-gradient(130deg, rgba(52, 78, 170, 0.76), rgba(30, 46, 97, 0.82));
+}
+
+.project-card__actions a:first-child {
+  border-color: rgba(197, 255, 61, 0.52);
 }
 
 @keyframes cardIn {

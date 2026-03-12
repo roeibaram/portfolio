@@ -15,7 +15,7 @@
   border: none;
   background: transparent;
   box-shadow: none;
-  animation: fadeUp 0.7s ease 0.15s both;
+  animation: fadeUp 0.7s ease 0.12s both;
 }
 
 .main__section-head {
@@ -40,11 +40,12 @@
 }
 
 .main__section--contact {
-  border: 1px solid rgba(178, 193, 255, 0.24);
+  border: 1px solid rgba(182, 197, 255, 0.3);
   border-radius: 16px;
   padding: 14px;
-  background: linear-gradient(130deg, rgba(17, 25, 55, 0.7), rgba(6, 10, 24, 0.96));
-  animation: fadeUp 0.7s ease 0.3s both;
+  background: linear-gradient(130deg, rgba(16, 25, 56, 0.82), rgba(6, 10, 24, 0.98));
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+  animation: fadeUp 0.7s ease 0.26s both;
 }
 
 .main__contact-list {
@@ -62,6 +63,7 @@
   border: 1px solid rgba(196, 207, 255, 0.28);
   background: rgba(22, 32, 70, 0.62);
   color: #e6edff;
+  transition: border-color 0.2s ease;
 }
 
 .main__contact-list li:nth-child(1) {
@@ -70,6 +72,10 @@
 
 .main__contact-list li:nth-child(2) {
   border-color: rgba(255, 138, 57, 0.5);
+}
+
+.main__contact-list li:hover {
+  border-color: rgba(126, 215, 255, 0.55);
 }
 
 .main__contact-list a {

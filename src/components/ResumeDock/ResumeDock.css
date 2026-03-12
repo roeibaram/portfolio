@@ -3,12 +3,13 @@
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  width: 142px;
-  border: 1px solid rgba(186, 200, 255, 0.34);
+  width: 146px;
+  border: 1px solid rgba(197, 210, 255, 0.38);
   border-radius: 14px;
   background: rgba(7, 12, 28, 0.9);
   padding: 10px;
   z-index: 60;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.44);
 }
 
 .resume-dock__title {
@@ -36,6 +37,12 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.resume-dock__actions button:hover,
+.resume-dock__actions a:hover {
+  transform: translateY(-1px);
 }
 
 .resume-dock__actions button:first-child {

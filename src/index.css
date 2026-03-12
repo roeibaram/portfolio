@@ -11,11 +11,15 @@ body {
   margin: 0;
   font-family: "Space Grotesk", "Segoe UI", Roboto, Arial, sans-serif;
   color: #eef0ff;
-  background: #0a0a0f;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(146, 88, 255, 0.3), transparent 45%),
+    radial-gradient(circle at 88% 6%, rgba(73, 165, 255, 0.22), transparent 40%),
+    radial-gradient(circle at 48% 100%, rgba(193, 255, 65, 0.12), transparent 42%),
+    #090a10;
 }
 
 a {
-  color: #b8c7ff;
+  color: #c1d0ff;
   text-decoration: none;
 }
 

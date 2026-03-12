@@ -1,8 +1,9 @@
 .footer {
   margin-top: 18px;
   text-align: center;
-  color: #8da1f5;
+  color: #96abff;
   font-size: 13px;
+  letter-spacing: 0.03em;
 }
 
 .footer p {
