@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import "./Main.css";
 import ProjectItem from "../ProjectItem/ProjectItem";
 
@@ -6,6 +6,8 @@ const projects = [
   {
     name: "MileMemo",
     subtitle: "Travel & Flight Tracking",
+    category: "Frontend",
+    status: "Live",
     link: "https://github.com/roeibaram/MileMemo",
     live: "https://roeibaram.github.io/MileMemo/",
     description:
@@ -20,6 +22,8 @@ const projects = [
   {
     name: "WTWR",
     subtitle: "Weather-Based Clothing App",
+    category: "Full Stack",
+    status: "Live",
     link: "https://github.com/roeibaram/se_project_react",
     live: "https://roeibaram.github.io/se_project_react/",
     description:
@@ -34,6 +38,8 @@ const projects = [
   {
     name: "PetMatch",
     subtitle: "Pet Adoption Search",
+    category: "Frontend",
+    status: "Live",
     link: "https://github.com/roeibaram/petmatch",
     live: "https://roeibaram.github.io/petmatch/",
     description:
@@ -48,6 +54,8 @@ const projects = [
   {
     name: "Spots",
     subtitle: "Photo Sharing UI",
+    category: "Frontend",
+    status: "Live",
     link: "https://github.com/roeibaram/se_project_spots",
     live: "https://roeibaram.github.io/se_project_spots/",
     description:
@@ -62,15 +70,47 @@ const projects = [
 ];
 
 function Main() {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filters = useMemo(
+    () => ["All", ...new Set(projects.map((project) => project.category))],
+    []
+  );
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") {
+      return projects;
+    }
+
+    return projects.filter((project) => project.category === activeFilter);
+  }, [activeFilter]);
+
   return (
     <main className="main">
       <section id="projects" className="main__section main__section--projects">
         <div className="main__section-head">
           <h2 className="main__title">Featured Projects</h2>
+          <ul className="main__filters" aria-label="Project category filters">
+            {filters.map((filter) => (
+              <li key={filter}>
+                <button
+                  type="button"
+                  className={
+                    activeFilter === filter
+                      ? "main__filter-btn main__filter-btn_active"
+                      : "main__filter-btn"
+                  }
+                  onClick={() => setActiveFilter(filter)}
+                >
+                  {filter}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <ul className="main__projects">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <ProjectItem key={project.name} project={project} index={index} />
           ))}
         </ul>

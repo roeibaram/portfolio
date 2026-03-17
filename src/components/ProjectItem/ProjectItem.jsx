@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ProjectItem.css";
 
 function ProjectItem({ project, index }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (!cardRef.current) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    observer.observe(cardRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <li className={`project-card project-card--${index + 1}`}>
+    <li
+      ref={cardRef}
+      className={`project-card project-card--${index + 1} ${
+        isVisible ? "project-card--visible" : ""
+      }`}
+    >
       <div className="project-card__glow" aria-hidden="true" />
+      <div className="project-card__meta">
+        <p className="project-card__category">{project.category}</p>
+        <p className="project-card__status">{project.status}</p>
+      </div>
+
       <div className="project-card__head">
         <p className="project-card__index">0{index + 1}</p>
         <div>

@@ -1,9 +1,13 @@
 .footer {
-  margin-top: 18px;
+  margin-top: 20px;
   text-align: center;
-  color: #96abff;
+  color: #9ab1ff;
   font-size: 13px;
   letter-spacing: 0.03em;
+  padding: 12px;
+  border: 1px solid rgba(175, 192, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(10, 16, 38, 0.58);
 }
 
 .footer p {

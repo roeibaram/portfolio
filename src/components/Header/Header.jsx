@@ -36,6 +36,12 @@ function Header() {
             LinkedIn
           </a>
         </div>
+
+        <ul className="header__highlights">
+          <li>JavaScript + React</li>
+          <li>Node.js + Express</li>
+          <li>MongoDB + REST APIs</li>
+        </ul>
       </div>
     </header>
   );
