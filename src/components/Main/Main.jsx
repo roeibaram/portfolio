@@ -71,49 +71,110 @@ const projects = [
 
 function Main() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filters = useMemo(
     () => ["All", ...new Set(projects.map((project) => project.category))],
     []
   );
 
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === "All") {
-      return projects;
-    }
+  const filterCounts = useMemo(() => {
+    return projects.reduce(
+      (result, project) => {
+        result[project.category] = (result[project.category] || 0) + 1;
+        return result;
+      },
+      { All: projects.length }
+    );
+  }, []);
 
-    return projects.filter((project) => project.category === activeFilter);
-  }, [activeFilter]);
+  const filteredProjects = useMemo(() => {
+    const normalizedSearch = searchQuery.trim().toLowerCase();
+
+    return projects.filter((project) => {
+      const matchesCategory =
+        activeFilter === "All" || project.category === activeFilter;
+
+      if (!matchesCategory) {
+        return false;
+      }
+
+      if (!normalizedSearch) {
+        return true;
+      }
+
+      const searchValue = [
+        project.name,
+        project.subtitle,
+        project.description,
+        project.stack.join(" "),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchValue.includes(normalizedSearch);
+    });
+  }, [activeFilter, searchQuery]);
 
   return (
     <main className="main">
       <section id="projects" className="main__section main__section--projects">
         <div className="main__section-head">
           <h2 className="main__title">Featured Projects</h2>
-          <ul className="main__filters" aria-label="Project category filters">
-            {filters.map((filter) => (
-              <li key={filter}>
+
+          <div className="main__tools">
+            <ul className="main__filters" aria-label="Project category filters">
+              {filters.map((filter) => (
+                <li key={filter}>
+                  <button
+                    type="button"
+                    className={
+                      activeFilter === filter
+                        ? "main__filter-btn main__filter-btn_active"
+                        : "main__filter-btn"
+                    }
+                    onClick={() => setActiveFilter(filter)}
+                  >
+                    {filter} ({filterCounts[filter] || 0})
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <div className="main__search-wrap">
+              <input
+                type="search"
+                className="main__search-input"
+                placeholder="Search projects or stack"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+              />
+              {searchQuery ? (
                 <button
                   type="button"
-                  className={
-                    activeFilter === filter
-                      ? "main__filter-btn main__filter-btn_active"
-                      : "main__filter-btn"
-                  }
-                  onClick={() => setActiveFilter(filter)}
+                  className="main__search-clear"
+                  onClick={() => setSearchQuery("")}
                 >
-                  {filter}
+                  Clear
                 </button>
-              </li>
-            ))}
-          </ul>
+              ) : null}
+            </div>
+          </div>
         </div>
 
-        <ul className="main__projects">
-          {filteredProjects.map((project, index) => (
-            <ProjectItem key={project.name} project={project} index={index} />
-          ))}
-        </ul>
+        <p className="main__results">
+          Showing {filteredProjects.length} of {projects.length} projects
+        </p>
+
+        {filteredProjects.length ? (
+          <ul className="main__projects">
+            {filteredProjects.map((project, index) => (
+              <ProjectItem key={project.name} project={project} index={index} />
+            ))}
+          </ul>
+        ) : (
+          <p className="main__empty">No matching projects found. Try a different keyword.</p>
+        )}
       </section>
 
       <section id="contact" className="main__section main__section--contact">
