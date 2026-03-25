@@ -107,6 +107,25 @@
   cursor: pointer;
 }
 
+.main__sort-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #bcd0ff;
+}
+
+.main__sort-select {
+  min-height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(190, 203, 255, 0.35);
+  background: rgba(11, 18, 44, 0.88);
+  color: #e8f0ff;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
 .main__results {
   margin: 0 0 12px;
   color: #b6c5ff;

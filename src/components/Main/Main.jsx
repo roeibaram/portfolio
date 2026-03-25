@@ -72,6 +72,7 @@ const projects = [
 function Main() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortMode, setSortMode] = useState("manual");
 
   const filters = useMemo(
     () => ["All", ...new Set(projects.map((project) => project.category))],
@@ -91,7 +92,7 @@ function Main() {
   const filteredProjects = useMemo(() => {
     const normalizedSearch = searchQuery.trim().toLowerCase();
 
-    return projects.filter((project) => {
+    const result = projects.filter((project) => {
       const matchesCategory =
         activeFilter === "All" || project.category === activeFilter;
 
@@ -114,7 +115,17 @@ function Main() {
 
       return searchValue.includes(normalizedSearch);
     });
-  }, [activeFilter, searchQuery]);
+
+    if (sortMode === "name") {
+      return [...result].sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    if (sortMode === "stack") {
+      return [...result].sort((a, b) => b.stack.length - a.stack.length);
+    }
+
+    return result;
+  }, [activeFilter, searchQuery, sortMode]);
 
   return (
     <main className="main">
@@ -159,6 +170,19 @@ function Main() {
                 </button>
               ) : null}
             </div>
+
+            <label className="main__sort-label">
+              Sort:
+              <select
+                className="main__sort-select"
+                value={sortMode}
+                onChange={(event) => setSortMode(event.target.value)}
+              >
+                <option value="manual">Default</option>
+                <option value="name">Name (A-Z)</option>
+                <option value="stack">Largest Stack</option>
+              </select>
+            </label>
           </div>
         </div>
 
