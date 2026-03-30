@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./ProjectItem.css";
 
-function ProjectItem({ project, index }) {
+function ProjectItem({ project, index, compactMode }) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
 
@@ -36,7 +36,7 @@ function ProjectItem({ project, index }) {
       ref={cardRef}
       className={`project-card project-card--${index + 1} ${
         isVisible ? "project-card--visible" : ""
-      }`}
+      } ${compactMode ? "project-card_compact" : ""}`}
     >
       <div className="project-card__glow" aria-hidden="true" />
       <div className="project-card__meta">
@@ -60,11 +60,15 @@ function ProjectItem({ project, index }) {
         ))}
       </ul>
 
-      <ul className="project-card__points">
-        {project.points.map((point) => (
-          <li key={point}>{point}</li>
-        ))}
-      </ul>
+      {compactMode ? (
+        <p className="project-card__compact-note">{project.points[0]}</p>
+      ) : (
+        <ul className="project-card__points">
+          {project.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      )}
 
       <div className="project-card__actions">
         {project.live && (

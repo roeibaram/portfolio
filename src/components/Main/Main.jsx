@@ -73,6 +73,7 @@ function Main() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState("manual");
+  const [compactMode, setCompactMode] = useState(false);
 
   const filters = useMemo(
     () => ["All", ...new Set(projects.map((project) => project.category))],
@@ -171,29 +172,45 @@ function Main() {
               ) : null}
             </div>
 
-            <label className="main__sort-label">
-              Sort:
-              <select
-                className="main__sort-select"
-                value={sortMode}
-                onChange={(event) => setSortMode(event.target.value)}
-              >
-                <option value="manual">Default</option>
-                <option value="name">Name (A-Z)</option>
-                <option value="stack">Largest Stack</option>
-              </select>
-            </label>
+            <div className="main__view-row">
+              <label className="main__sort-label">
+                Sort:
+                <select
+                  className="main__sort-select"
+                  value={sortMode}
+                  onChange={(event) => setSortMode(event.target.value)}
+                >
+                  <option value="manual">Default</option>
+                  <option value="name">Name (A-Z)</option>
+                  <option value="stack">Largest Stack</option>
+                </select>
+              </label>
+
+              <label className="main__compact-toggle">
+                <input
+                  type="checkbox"
+                  checked={compactMode}
+                  onChange={(event) => setCompactMode(event.target.checked)}
+                />
+                Compact cards
+              </label>
+            </div>
           </div>
         </div>
 
         <p className="main__results">
-          Showing {filteredProjects.length} of {projects.length} projects
+          Showing {filteredProjects.length} of {projects.length} projects · {compactMode ? "Compact" : "Detailed"} view
         </p>
 
         {filteredProjects.length ? (
           <ul className="main__projects">
             {filteredProjects.map((project, index) => (
-              <ProjectItem key={project.name} project={project} index={index} />
+              <ProjectItem
+                key={project.name}
+                project={project}
+                index={index}
+                compactMode={compactMode}
+              />
             ))}
           </ul>
         ) : (

@@ -180,6 +180,26 @@
   color: #7dd3ff;
 }
 
+.project-card__compact-note {
+  margin: 12px 0 0;
+  color: #d5defe;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.project-card_compact {
+  padding: 14px;
+}
+
+.project-card_compact .project-card__description {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.project-card_compact .project-card__stack {
+  margin-top: 10px;
+}
+
 .project-card__actions {
   margin-top: 16px;
   display: flex;

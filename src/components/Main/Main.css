@@ -107,6 +107,14 @@
   cursor: pointer;
 }
 
+.main__view-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .main__sort-label {
   display: inline-flex;
   align-items: center;
@@ -124,6 +132,19 @@
   color: #e8f0ff;
   padding: 0 10px;
   font-size: 13px;
+}
+
+.main__compact-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c7d6ff;
+}
+
+.main__compact-toggle input {
+  accent-color: #8bff8a;
 }
 
 .main__results {
@@ -219,6 +240,10 @@
   }
 
   .main__filters {
+    justify-content: flex-start;
+  }
+
+  .main__view-row {
     justify-content: flex-start;
   }
 }
