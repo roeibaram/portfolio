@@ -128,6 +128,27 @@ function Main() {
     return result;
   }, [activeFilter, searchQuery, sortMode]);
 
+  const stackSummary = useMemo(() => {
+    const stackCountMap = {};
+
+    filteredProjects.forEach((project) => {
+      project.stack.forEach((tech) => {
+        stackCountMap[tech] = (stackCountMap[tech] || 0) + 1;
+      });
+    });
+
+    return Object.entries(stackCountMap)
+      .map(([tech, count]) => ({ tech, count }))
+      .sort((a, b) => {
+        if (b.count === a.count) {
+          return a.tech.localeCompare(b.tech);
+        }
+
+        return b.count - a.count;
+      })
+      .slice(0, 8);
+  }, [filteredProjects]);
+
   return (
     <main className="main">
       <section id="projects" className="main__section main__section--projects">
@@ -201,6 +222,20 @@ function Main() {
         <p className="main__results">
           Showing {filteredProjects.length} of {projects.length} projects · {compactMode ? "Compact" : "Detailed"} view
         </p>
+
+        {stackSummary.length ? (
+          <div className="main__stack-summary">
+            <p>Top stack in this view:</p>
+            <ul>
+              {stackSummary.map((item) => (
+                <li key={item.tech}>
+                  {item.tech}
+                  <span>{item.count}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         {filteredProjects.length ? (
           <ul className="main__projects">
