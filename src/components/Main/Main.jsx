@@ -149,6 +149,37 @@ function Main() {
       .slice(0, 8);
   }, [filteredProjects]);
 
+  const hasActiveControls =
+    activeFilter !== "All" ||
+    searchQuery.trim() !== "" ||
+    sortMode !== "manual" ||
+    compactMode;
+
+  const viewMetrics = useMemo(() => {
+    const liveCount = filteredProjects.filter(
+      (project) => project.status === "Live"
+    ).length;
+    const frontendCount = filteredProjects.filter(
+      (project) => project.category === "Frontend"
+    ).length;
+    const fullStackCount = filteredProjects.filter(
+      (project) => project.category === "Full Stack"
+    ).length;
+
+    return [
+      { label: "Live in view", value: liveCount },
+      { label: "Frontend", value: frontendCount },
+      { label: "Full Stack", value: fullStackCount },
+    ];
+  }, [filteredProjects]);
+
+  const handleResetView = () => {
+    setActiveFilter("All");
+    setSearchQuery("");
+    setSortMode("manual");
+    setCompactMode(false);
+  };
+
   return (
     <main className="main">
       <section id="projects" className="main__section main__section--projects">
@@ -215,13 +246,32 @@ function Main() {
                 />
                 Compact cards
               </label>
+
+              {hasActiveControls ? (
+                <button
+                  type="button"
+                  className="main__reset-btn"
+                  onClick={handleResetView}
+                >
+                  Reset view
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
 
         <p className="main__results">
-          Showing {filteredProjects.length} of {projects.length} projects · {compactMode ? "Compact" : "Detailed"} view
+          Showing {filteredProjects.length} of {projects.length} projects . {compactMode ? "Compact" : "Detailed"} view
         </p>
+
+        <ul className="main__metrics" aria-label="Current project metrics">
+          {viewMetrics.map((metric) => (
+            <li key={metric.label}>
+              <span>{metric.value}</span>
+              {metric.label}
+            </li>
+          ))}
+        </ul>
 
         {stackSummary.length ? (
           <div className="main__stack-summary">
