@@ -74,6 +74,7 @@ function Main() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState("manual");
   const [compactMode, setCompactMode] = useState(false);
+  const [isEmailCopied, setIsEmailCopied] = useState(false);
 
   const filters = useMemo(
     () => ["All", ...new Set(projects.map((project) => project.category))],
@@ -178,6 +179,18 @@ function Main() {
     setSearchQuery("");
     setSortMode("manual");
     setCompactMode(false);
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("roeibaram37@gmail.com");
+      setIsEmailCopied(true);
+      window.setTimeout(() => {
+        setIsEmailCopied(false);
+      }, 1500);
+    } catch {
+      setIsEmailCopied(false);
+    }
   };
 
   return (
@@ -306,8 +319,15 @@ function Main() {
       <section id="contact" className="main__section main__section--contact">
         <h2 className="main__title">Contact</h2>
         <ul className="main__contact-list">
-          <li>
+          <li className="main__contact-email">
             <a href="mailto:roeibaram37@gmail.com">roeibaram37@gmail.com</a>
+            <button
+              type="button"
+              className="main__copy-btn"
+              onClick={handleCopyEmail}
+            >
+              {isEmailCopied ? "Copied" : "Copy"}
+            </button>
           </li>
           <li>
             <a href="tel:+14709072448">470-907-2448</a>
@@ -318,6 +338,9 @@ function Main() {
             </a>
           </li>
         </ul>
+        <p className="main__copy-status" aria-live="polite">
+          {isEmailCopied ? "Email copied to clipboard." : ""}
+        </p>
       </section>
     </main>
   );
