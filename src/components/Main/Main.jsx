@@ -156,6 +156,24 @@ function Main() {
     sortMode !== "manual" ||
     compactMode;
 
+  const activeViewLabels = useMemo(() => {
+    const labels = [
+      activeFilter === "All" ? "All categories" : activeFilter,
+      sortMode === "manual"
+        ? "Default order"
+        : sortMode === "name"
+        ? "Name A-Z"
+        : "Largest stack first",
+      compactMode ? "Compact cards" : "Detailed cards",
+    ];
+
+    if (searchQuery.trim()) {
+      labels.splice(1, 0, `Search: ${searchQuery.trim()}`);
+    }
+
+    return labels;
+  }, [activeFilter, compactMode, searchQuery, sortMode]);
+
   const viewMetrics = useMemo(() => {
     const liveCount = filteredProjects.filter(
       (project) => project.status === "Live"
@@ -274,8 +292,14 @@ function Main() {
         </div>
 
         <p className="main__results">
-          Showing {filteredProjects.length} of {projects.length} projects . {compactMode ? "Compact" : "Detailed"} view
+          Showing {filteredProjects.length} of {projects.length} projects.
         </p>
+
+        <ul className="main__active-view" aria-label="Active project view settings">
+          {activeViewLabels.map((label) => (
+            <li key={label}>{label}</li>
+          ))}
+        </ul>
 
         <ul className="main__metrics" aria-label="Current project metrics">
           {viewMetrics.map((metric) => (
