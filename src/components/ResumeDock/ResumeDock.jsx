@@ -4,6 +4,7 @@ import "./ResumeDock.css";
 function ResumeDock() {
   const [isOpen, setIsOpen] = useState(false);
   const viewerRef = useRef(null);
+  const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf`;
 
   function handleFullscreen() {
     if (!viewerRef.current) return;
@@ -21,10 +22,10 @@ function ResumeDock() {
           <button onClick={() => setIsOpen(true)} type="button">
             Preview
           </button>
-          <a href="/resume.pdf" target="_blank" rel="noreferrer">
+          <a href={resumeUrl} target="_blank" rel="noreferrer">
             Open
           </a>
-          <a href="/resume.pdf" download>
+          <a href={resumeUrl} download="Roei-Baram-Resume.pdf">
             Download
           </a>
         </div>
@@ -39,10 +40,10 @@ function ResumeDock() {
                 <button type="button" onClick={handleFullscreen}>
                   Fullscreen
                 </button>
-                <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                <a href={resumeUrl} target="_blank" rel="noreferrer">
                   Open
                 </a>
-                <a href="/resume.pdf" download>
+                <a href={resumeUrl} download="Roei-Baram-Resume.pdf">
                   Download
                 </a>
                 <button type="button" onClick={() => setIsOpen(false)}>
@@ -50,7 +51,7 @@ function ResumeDock() {
                 </button>
               </div>
             </div>
-            <iframe title="Roei Baram Resume" src="/resume.pdf" className="resume-modal__frame" />
+            <iframe title="Roei Baram Resume" src={resumeUrl} className="resume-modal__frame" />
           </div>
           <button className="resume-modal__backdrop" onClick={() => setIsOpen(false)} aria-label="Close resume modal" />
         </div>
