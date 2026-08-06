@@ -20,8 +20,10 @@ body {
 a {
   color: #c1d0ff;
   text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 a:hover {
   color: #ffffff;
+  transform: translateY(-1px);
 }
