@@ -5,6 +5,15 @@
   position: relative;
 }
 
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(112, 95, 255, 0.18), transparent 32%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 @media (max-width: 760px) {
   .page {
     width: min(1140px, 100% - 18px);
