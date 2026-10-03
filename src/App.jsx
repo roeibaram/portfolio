@@ -15,6 +15,9 @@ function App() {
 
   return (
     <div className={`page ${isLoaded ? "page-ready" : ""}`}>
+      <a className="page__skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Header />
       <Main />
       <Footer />

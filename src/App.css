@@ -5,6 +5,25 @@
   position: relative;
 }
 
+.page__skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  transform: translateY(-180%);
+  border: 1px solid rgba(200, 255, 73, 0.7);
+  border-radius: 8px;
+  background: #101522;
+  color: #f8fbff;
+}
+
+.page__skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid rgba(200, 255, 73, 0.8);
+  outline-offset: 3px;
+}
+
 .page::before {
   content: "";
   position: fixed;

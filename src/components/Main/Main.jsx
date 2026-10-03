@@ -212,7 +212,7 @@ function Main() {
   };
 
   return (
-    <main className="main">
+    <main className="main" id="main-content" tabIndex="-1">
       <section id="projects" className="main__section main__section--projects">
         <div className="main__section-head">
           <h2 className="main__title">Featured Projects</h2>
