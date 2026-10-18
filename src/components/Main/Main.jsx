@@ -74,7 +74,7 @@ function Main() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState("manual");
   const [compactMode, setCompactMode] = useState(false);
-  const [isEmailCopied, setIsEmailCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("idle");
 
   const filters = useMemo(
     () => ["All", ...new Set(projects.map((project) => project.category))],
@@ -202,13 +202,12 @@ function Main() {
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText("roeibaram37@gmail.com");
-      setIsEmailCopied(true);
-      window.setTimeout(() => {
-        setIsEmailCopied(false);
-      }, 1500);
+      setCopyStatus("copied");
     } catch {
-      setIsEmailCopied(false);
+      setCopyStatus("failed");
     }
+
+    window.setTimeout(() => setCopyStatus("idle"), 2000);
   };
 
   return (
@@ -350,7 +349,7 @@ function Main() {
               className="main__copy-btn"
               onClick={handleCopyEmail}
             >
-              {isEmailCopied ? "Copied" : "Copy"}
+              {copyStatus === "copied" ? "Copied" : copyStatus === "failed" ? "Retry" : "Copy"}
             </button>
           </li>
           <li>
@@ -363,7 +362,11 @@ function Main() {
           </li>
         </ul>
         <p className="main__copy-status" aria-live="polite">
-          {isEmailCopied ? "Email copied to clipboard." : ""}
+          {copyStatus === "copied"
+            ? "Email copied to clipboard."
+            : copyStatus === "failed"
+            ? "Could not copy automatically. Select the email address to copy it manually."
+            : ""}
         </p>
       </section>
     </main>
