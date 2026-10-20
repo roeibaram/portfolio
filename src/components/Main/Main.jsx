@@ -222,6 +222,7 @@ function Main() {
                 <li key={filter}>
                   <button
                     type="button"
+                    aria-pressed={activeFilter === filter}
                     className={
                       activeFilter === filter
                         ? "main__filter-btn main__filter-btn_active"
@@ -239,6 +240,7 @@ function Main() {
               <input
                 type="search"
                 className="main__search-input"
+                aria-label="Search projects by name, description, or technology stack"
                 placeholder="Search projects or stack"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
