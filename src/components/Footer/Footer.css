@@ -1,6 +1,9 @@
 .footer {
   margin-top: 20px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   color: #9ab1ff;
   font-size: 13px;
   letter-spacing: 0.03em;
@@ -12,4 +15,18 @@
 
 .footer p {
   margin: 0;
+}
+
+.footer__top-link {
+  color: inherit;
+}
+
+.footer__top-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 520px) {
+  .footer {
+    flex-direction: column;
+  }
 }
