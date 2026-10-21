@@ -292,7 +292,7 @@ function Main() {
           </div>
         </div>
 
-        <p className="main__results">
+        <p className="main__results" role="status">
           Showing {filteredProjects.length} of {projects.length} projects.
         </p>
 
