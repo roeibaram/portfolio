@@ -10,6 +10,11 @@ function ProjectItem({ project, index, compactMode }) {
       return undefined;
     }
 
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
