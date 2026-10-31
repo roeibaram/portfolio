@@ -32,10 +32,10 @@ function ResumeDock() {
       </aside>
 
       {isOpen ? (
-        <div className="resume-modal" role="dialog" aria-modal="true">
+        <div className="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
           <div className="resume-modal__panel" ref={viewerRef}>
             <div className="resume-modal__bar">
-              <p>Resume Viewer</p>
+              <p id="resume-modal-title">Resume Viewer</p>
               <div>
                 <button type="button" onClick={handleFullscreen}>
                   Fullscreen
