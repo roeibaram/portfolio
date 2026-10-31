@@ -52,6 +52,21 @@ const projects = [
     ],
   },
   {
+    name: "Uleadz Call Listener",
+    subtitle: "Consent-Based Call Transcription Prototype",
+    category: "Full Stack",
+    status: "In Development",
+    link: "https://github.com/roeibaram/uleadz-call-listener",
+    description:
+      "A Chrome extension and local Node.js bridge that transcribes manually selected phone-tab and microphone audio with Groq Whisper.",
+    stack: ["Chrome Extension", "Manifest V3", "Node.js", "WebSockets", "Groq Whisper"],
+    points: [
+      "Streams short speech segments through an authenticated loopback-only bridge.",
+      "Keeps a bounded transcript history in the browser without writing data back to Uleadz.",
+      "Includes a synthetic-audio test flow and explicit consent and privacy guidance.",
+    ],
+  },
+  {
     name: "Spots",
     subtitle: "Photo Sharing UI",
     category: "Frontend",

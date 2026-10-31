@@ -48,6 +48,11 @@
   transition-delay: 0.28s;
 }
 
+.project-card:nth-child(5) {
+  grid-column: 2 / 12;
+  transition-delay: 0.34s;
+}
+
 .project-card:hover {
   transform: translateY(-4px);
   border-color: rgba(210, 220, 255, 0.5);
